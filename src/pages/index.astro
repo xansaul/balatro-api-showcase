@@ -1,63 +1,107 @@
 ---
 import Image from "astro/components/Image.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-import balatroLogo from "../assets/logo-balatro.png"
+import balatroLogo from "../assets/logo-balatro.png";
 import type { JokerResponse } from "../interfaces/joker-response";
 import { TiltedCard } from "../components/TiltedCard";
 import type { TarotResponse } from "../interfaces/tarot-response";
+import Button from "../components/Button.astro";
+import { Icon } from "astro-icon/components";
 
-const responseJokers = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/api/jokers?limit=7`);
-const { data: dataJokers }: JokerResponse= await responseJokers.json()
 
-const responseTarot = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/api/tarot?limit=7`);
-const { data: dataTarot }: TarotResponse = await responseTarot.json()
+const responseJokers = await fetch(
+  `${import.meta.env.PUBLIC_BACKEND_URL}/api/jokers?limit=7`
+);
+const { data: dataJokers }: JokerResponse = await responseJokers.json();
+
+const responseTarot = await fetch(
+  `${import.meta.env.PUBLIC_BACKEND_URL}/api/tarot?limit=7`
+);
+const { data: dataTarot }: TarotResponse = await responseTarot.json();
 ---
 
-<MainLayout title="Home" >
-    <div class="md:flex md:p-0 px-2 text-white gap-4 mt-14 justify-center items-center">
-        <Image src={balatroLogo} alt="Balatro" class="w-sm " />
-        <span class="text-9xl place-self-end">API</span>
-    </div>
-    <div class="w-11/12 md:w-8/12 m-auto flex flex-wrap gap-5 mt-10 md:justify-between justify-center">
+<MainLayout title="Home">
+  <div
+    class="md:flex md:p-0 px-2 text-white gap-4 mt-14 justify-center items-center"
+  >
+    <Image src={balatroLogo} alt="Balatro" class="w-sm" />
+    <span class="text-9xl place-self-end">API</span>
+  </div>
+  <div
+    class="w-11/12 md:w-8/12 m-auto flex flex-wrap gap-5 mt-10 justify-center"
+  >
+    <script
+      type="text/javascript"
+      src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+      data-name="bmc-button"
+      data-slug="xansaul"
+      data-color="#5F7FFF"
+      data-emoji="🍺"
+      data-font="Inter"
+      data-text="Buy me a beer"
+      data-outline-color="#000000"
+      data-font-color="#ffffff"
+      data-coffee-color="#FFDD00"></script>
+
+    <Button class="bg-red-900">
+      <div class="flex justify-center items-center gap-2">
+        <Icon name={"github"} size={25} />
+        <span class="place-self-end text-2xl">Github</span>
+      </div>
+    </Button>
+
+    <Button class="bg-blue-900">
+      <div class="flex justify-center items-center gap-2">
+        <Icon name={"web"} size={25} />
+        <span class="place-self-end text-2xl">My site</span>
+      </div>
+    </Button>
+  </div>
+      <div
+        class="w-11/12 md:w-8/12 m-auto flex flex-wrap gap-5 mt-10 md:justify-between justify-center"
+      >
         {
-            dataJokers.map(joker=>(
-                <div class="text-white">
-                    <TiltedCard
-                        client:load
-                        imageSrc={joker.joker_image}
-                        containerHeight="200px"
-                        containerWidth="150px"
-                        imageHeight="200px"
-                        imageWidth="150px"
-                        rotateAmplitude={25}
-                        scaleOnHover={1}
-                        showTooltip={false}
-                        showMobileWarning={false}
-                    />
-                    <span class="block mt-1 text-lg">{joker.joker}</span>
-                </div>
-            ))
+          dataJokers.map((joker) => (
+            <div class="text-white">
+              <TiltedCard
+                client:load
+                imageSrc={joker.joker_image}
+                containerHeight="200px"
+                containerWidth="150px"
+                imageHeight="200px"
+                imageWidth="150px"
+                rotateAmplitude={25}
+                scaleOnHover={1}
+                showTooltip={false}
+                showMobileWarning={false}
+              />
+              <span class="block mt-1 text-lg">{joker.joker}</span>
+            </div>
+          ))
         }
-    </div>
-    <div class="w-11/12 md:w-8/12 m-auto flex flex-wrap gap-5 mt-10 md:justify-between justify-center">
+      </div>
+      <div
+        class="w-11/12 md:w-8/12 m-auto flex flex-wrap gap-5 mt-10 md:justify-between justify-center"
+      >
         {
-            dataTarot.map(tarot=>(
-                <div class="text-white">
-                    <TiltedCard
-                        client:load
-                        imageSrc={tarot.tarot_image}
-                        containerHeight="200px"
-                        containerWidth="150px"
-                        imageHeight="200px"
-                        imageWidth="150px"
-                        rotateAmplitude={25}
-                        scaleOnHover={1}
-                        showTooltip={false}
-                        showMobileWarning={false}
-                    />
-                    <span class="block mt-1 text-lg">{tarot.tarot_name}</span>
-                </div>
-            ))
+          dataTarot.map((tarot) => (
+            <div class="text-white">
+              <TiltedCard
+                client:load
+                imageSrc={tarot.tarot_image}
+                containerHeight="200px"
+                containerWidth="150px"
+                imageHeight="200px"
+                imageWidth="150px"
+                rotateAmplitude={25}
+                scaleOnHover={1}
+                showTooltip={false}
+                showMobileWarning={false}
+              />
+              <span class="block mt-1 text-lg">{tarot.tarot_name}</span>
+            </div>
+          ))
         }
-    </div>
+      </div>
+  </div>
 </MainLayout>
