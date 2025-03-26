@@ -30,7 +30,7 @@ const completeImgSrc = `${import.meta.env.PUBLIC_WEB_SITE_URL}/OGImage.png`;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content="Balatro API - Access detailed information about jokers and tarot cards from the Balatro game" />
   </head>
-  <body class="bg-[#121212] pb-5 bg-[url('/balatro-bg.webp')] bg-center bg-[length:100%] min-h-screen  ">
+  <body class="bg-[#121212]  min-h-[90vh] relative pb-20">
     <div class="fixed inset-0 w-full h-full -z-20">
       <BalatroBG
         client:load
@@ -40,5 +40,13 @@ const completeImgSrc = `${import.meta.env.PUBLIC_WEB_SITE_URL}/OGImage.png`;
       />
     </div>
     <slot />
+    <footer class="fixed bottom-0 w-full py-2 backdrop-blur-sm bg-black/30 ">
+      <div class="container mx-auto px-4 text-white/80 flex justify-center items-center gap-4">
+        <span>Credits:</span>
+        <a href="https://balatrogame.fandom.com/wiki/Balatro_Wiki" target="_blank" class="hover:text-white transition-colors">Balatro Wiki (Information)</a>
+        <span>|</span>
+        <a href="https://managore.itch.io/" target="_blank" class="hover:text-white transition-colors">Managore (Font)</a>
+      </div>
+    </footer>
   </body>
 </html>
