@@ -21,7 +21,7 @@ const { data: dataTarot }: TarotResponse = await responseTarot.json();
 
 <MainLayout title="Balatro balatro tin ding tututututu">
   <div
-    class="md:flex md:p-0 px-2 text-white gap-4 mt-6 justify-center items-center"
+    class="md:flex md:p-0 px-2 text-white gap-4 mt-10 justify-center items-center"
   >
     <Image src={balatroLogo} alt="Balatro" class="w-sm" />
     <span class="text-9xl place-self-end">API</span>
@@ -80,7 +80,7 @@ const { data: dataTarot }: TarotResponse = await responseTarot.json();
     </Button>
   </div>
   <div
-    class="md:w-10/12 2xl:w-8/12 w-11/12 md:flex-nowrap flex-wrap m-auto flex gap-5 mt-8 md:justify-around justify-center"
+    class="md:w-10/12 2xl:w-8/12 w-11/12 flex-wrap m-auto flex gap-5 mt-10 md:justify-around justify-center" 
   >
     {
       dataJokers.map((joker) => (
@@ -103,7 +103,7 @@ const { data: dataTarot }: TarotResponse = await responseTarot.json();
     }
   </div>
   <div
-    class="md:w-10/12 2xl:w-8/12 w-11/12 md:flex-nowrap flex-wrap m-auto flex gap-5 mt-2 md:justify-around justify-center"
+    class="md:w-10/12 2xl:w-8/12 w-11/12 flex-wrap m-auto flex gap-5 mt-6 md:justify-around justify-center"
   >
     {
       dataTarot.map((tarot) => (
