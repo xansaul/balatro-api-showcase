@@ -7,6 +7,7 @@ interface Props {
 }
 
 const title = Astro.props.title;
+const completeImgSrc = `${import.meta.env.PUBLIC_WEB_SITE_URL}/OGImage.png`;
 ---
 
 <!doctype html>
@@ -17,6 +18,17 @@ const title = Astro.props.title;
     <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta name="description" content="Balatro API - Access detailed information about jokers and tarot cards from the Balatro game" />
+    <meta name="keywords" content="Balatro, API, Jokers, Tarot Cards, Gaming, Card Game, Deck Building" />
+    <meta name="author" content="xansaul" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="Balatro API - Access detailed information about jokers and tarot cards from the Balatro game" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={completeImgSrc} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="Balatro API - Access detailed information about jokers and tarot cards from the Balatro game" />
   </head>
   <body class="bg-[#121212] pb-5 bg-[url('/balatro-bg.webp')] bg-center bg-[length:100%]">
     <div class="absolute w-[100vw] h-[100vh] top-0 left-0 -z-20 hidden md:block">
