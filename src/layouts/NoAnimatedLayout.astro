@@ -1,0 +1,47 @@
+---
+import { BalatroBG } from "../components/BalatroBG";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+}
+
+const title = Astro.props.title;
+const completeImgSrc = `${import.meta.env.PUBLIC_WEB_SITE_URL}/OGImage.png`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content="Balatro API - Access detailed information about jokers and tarot cards from the Balatro game" />
+    <meta name="keywords" content="Balatro, API, Jokers, Tarot Cards, Gaming, Card Game, Deck Building" />
+    <meta name="author" content="xansaul" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="Balatro API - Access detailed information about jokers and tarot cards from the Balatro game" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={completeImgSrc} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="Balatro API - Access detailed information about jokers and tarot cards from the Balatro game" />
+  </head>
+  <body class="bg-[#121212] min-h-screen relative pb-20" style="background-image: url('/balatrobg.webp'); background-size: cover; background-position: center;">
+    <slot />
+    <footer class="fixed bottom-0 w-full py-2 backdrop-blur-sm bg-black/30 ">
+      <div class="container mx-auto px-4 text-white/80 flex justify-center items-center gap-4">
+        <div class="">
+
+          <span>Credits:</span>
+          <a href="https://balatrogame.fandom.com/wiki/Balatro_Wiki" target="_blank" class="hover:text-white transition-colors">Balatro Wiki (Information)</a>
+        </div>
+        <span>|</span>
+        <a href="https://managore.itch.io/" target="_blank" class="hover:text-white transition-colors">Managore (Font)</a>
+      </div>
+    </footer>
+  </body>
+</html>

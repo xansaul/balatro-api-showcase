@@ -1,5 +1,5 @@
 import type { SpringOptions } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 interface TiltedCardProps {
@@ -40,6 +40,7 @@ export function TiltedCard({
   displayOverlayContent = false,
 }: TiltedCardProps) {
   const ref = useRef<HTMLElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useSpring(useMotionValue(0), springValues);
@@ -53,6 +54,13 @@ export function TiltedCard({
   });
 
   const [lastY, setLastY] = useState(0);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setIsImageLoaded(true);
+    }
+  }, []);
 
   function handleMouse(e: React.MouseEvent<HTMLElement>) {
     if (!ref.current) return;
@@ -88,6 +96,10 @@ export function TiltedCard({
     rotateFigcaption.set(0);
   }
 
+  const handleImageLoad = () => {
+    setIsImageLoaded(true);
+  };
+
   return (
     <figure
       ref={ref}
@@ -117,6 +129,7 @@ export function TiltedCard({
         }}
       >
         <motion.img
+          ref={imgRef}
           src={imageSrc}
           alt={altText}
           className="absolute top-0 left-0 object-cover rounded-[15px] will-change-transform [transform:translateZ(0)]"
@@ -124,11 +137,18 @@ export function TiltedCard({
             width: imageWidth,
             height: imageHeight,
           }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isImageLoaded ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+          onLoad={handleImageLoad}
         />
 
         {displayOverlayContent && overlayContent && (
           <motion.div
             className="absolute top-0 left-0 z-[2] will-change-transform [transform:translateZ(30px)]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isImageLoaded ? 1 : 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             {overlayContent}
           </motion.div>

@@ -1,9 +1,9 @@
 ---
 import type { GetStaticPaths } from "astro";
-import MainLayout from "@/layouts/MainLayout.astro";
 import type { JokerResponse } from "@/interfaces/joker-response";
 import { TiltedCard } from "@/components/TiltedCard";
 import Button from "@/components/Button.astro";
+import NoAnimatedLayout from "@/layouts/NoAnimatedLayout.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const responseJokers = await fetch(
@@ -22,17 +22,16 @@ export const getStaticPaths = (async ({ paginate }) => {
 const { page } = Astro.props;
 const currentPage = page.currentPage;
 const lastPage = page.lastPage;
-const url = Astro.url;
 const prevPage = currentPage > 1 ? currentPage - 1 : null;
 const nextPage = currentPage < lastPage ? currentPage + 1 : null;
 ---
 
-<MainLayout title="Jokers">
-  <div class="min-h-[80vh] flex flex-col justify-center text-white ">
-    <div class="md:w-10/12 2xl:w-9/12 w-11/12  m-auto">
+<NoAnimatedLayout title="Jokers">
+  <div class="min-h-[80vh] flex flex-col justify-center text-white">
+    <div class="md:w-10/12 2xl:w-9/12 w-11/12 m-auto">
       <h1 class="text-7xl mb-8 text-center">Jokers</h1>
       <div
-        class=" grid xl:grid-cols-7 
+        class="grid xl:grid-cols-7
         lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2"
       >
         {
@@ -56,28 +55,28 @@ const nextPage = currentPage < lastPage ? currentPage + 1 : null;
         }
       </div>
       <div class="flex justify-between items-center mt-4">
-        {prevPage ? (
-          <Button class="bg-black">
-            <a  href={`/jokers/${prevPage}`}>
-              Prev
+        {
+          prevPage ? (
+            <a href={`/jokers/${prevPage}`}>
+              <Button class="bg-black">Prev</Button>
             </a>
-          </Button>
-        ) : (
-          <span></span> 
-        )}
-        <span class="text-2xl">
+          ) : (
+            <span />
+          )
+        }
+        <span class="text-3xl">
           Page {currentPage} of {lastPage}
         </span>
-        {nextPage ? (
-          <Button class="bg-black">
+        {
+          nextPage ? (
             <a href={`/jokers/${nextPage}`}>
-              Next
+              <Button class="bg-black">Next</Button>
             </a>
-          </Button>
-        ) : (
-          <span></span> 
-        )}
+          ) : (
+            <span />
+          )
+        }
       </div>
     </div>
   </div>
-</MainLayout>
+</NoAnimatedLayout>
