@@ -1,22 +1,14 @@
 ---
 import Image from "astro/components/Image.astro";
-import MainLayout from "../layouts/MainLayout.astro";
 import balatroLogo from "../assets/logo-balatro.png";
-import type { JokerResponse } from "../interfaces/joker-response";
-import { TiltedCard } from "../components/TiltedCard";
-import type { TarotResponse } from "../interfaces/tarot-response";
-import Button from "../components/Button.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 import { Icon } from "astro-icon/components";
+import { Button, TiltedCard } from "@/components";
+import { getJokers, getTarot } from "@/core";
 
-const responseJokers = await fetch(
-  `${import.meta.env.PUBLIC_BACKEND_URL}/api/jokers?limit=7&page=10`
-);
-const { data: dataJokers }: JokerResponse = await responseJokers.json();
+const jokers = await getJokers(7,10)
 
-const responseTarot = await fetch(
-  `${import.meta.env.PUBLIC_BACKEND_URL}/api/tarot?limit=7&page=2`
-);
-const { data: dataTarot }: TarotResponse = await responseTarot.json();
+const tarot = await getTarot(7,2)
 ---
 
 <MainLayout title="Balatro balatro tin ding tututututu">
@@ -88,7 +80,7 @@ const { data: dataTarot }: TarotResponse = await responseTarot.json();
 
     <div class="flex flex-wrap gap-5 md:justify-around justify-center">
       {
-        dataJokers.map((joker) => (
+        jokers.map((joker) => (
           <div class="text-white">
             <TiltedCard
               client:load
@@ -116,7 +108,7 @@ const { data: dataTarot }: TarotResponse = await responseTarot.json();
 
     <div class="flex flex-wrap gap-5 md:justify-around justify-center">
     {
-      dataTarot.map((tarot) => (
+      tarot.map((tarot) => (
         <div class="text-white">
           <TiltedCard
             client:load

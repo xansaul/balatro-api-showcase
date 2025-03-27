@@ -1,18 +1,15 @@
 ---
-interface Props {
-  onClick?: string | null | undefined;
-  class: string;
+interface Props extends  astroHTML.JSX.ButtonHTMLAttributes{
+
 }
 
-const { class: className = "", onClick } = Astro.props;
+const { class: className,...attr } = Astro.props;
 ---
 
 <button
-  class:list={[
-    "flex items-center justify-center cursor-pointer gap-2 px-4 py-2 rounded-lg text-white transition-colors",
-    className,
-  ]}
-  onclick={onClick}
+  class:list={["flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-white transition-colors",className]}
+  {...attr}
+ 
 >
   <slot />
 </button>

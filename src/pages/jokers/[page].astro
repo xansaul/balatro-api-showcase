@@ -1,15 +1,12 @@
 ---
 import type { GetStaticPaths } from "astro";
-import type { JokerResponse } from "@/interfaces/joker-response";
-import { TiltedCard } from "@/components/TiltedCard";
-import Button from "@/components/Button.astro";
+import { TiltedCard, Button } from "@/components";
 import NoAnimatedLayout from "@/layouts/NoAnimatedLayout.astro";
+import { getJokers } from "@/core";
+import { Icon } from "astro-icon/components";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const responseJokers = await fetch(
-    `${import.meta.env.PUBLIC_BACKEND_URL}/api/jokers?limit=150`
-  );
-  const { data }: JokerResponse = await responseJokers.json();
+  const data = await getJokers(150);
 
   const jokers = data.map((joker) => ({
     joker_image: joker.joker_image,
@@ -55,27 +52,34 @@ const nextPage = currentPage < lastPage ? currentPage + 1 : null;
         }
       </div>
       <div class="flex justify-between items-center mt-4">
-        {
-          prevPage ? (
-            <a href={`/jokers/${prevPage}`}>
-              <Button class="bg-black">Prev</Button>
-            </a>
-          ) : (
-            <span />
-          )
-        }
+        <a href={`/jokers/${prevPage}`}>
+          <Button
+            class:list={[
+              { "bg-black cursor-pointer": prevPage },
+              { "bg-slate-500": !prevPage },
+            ]}
+            disabled={!prevPage}
+          >
+            <Icon name="arrow-left" />
+            Prev
+          </Button>
+        </a>
+
         <span class="text-3xl">
           Page {currentPage} of {lastPage}
         </span>
-        {
-          nextPage ? (
-            <a href={`/jokers/${nextPage}`}>
-              <Button class="bg-black">Next</Button>
-            </a>
-          ) : (
-            <span />
-          )
-        }
+
+        <a href={`/jokers/${nextPage}`}>
+          <Button
+            class:list={[
+              { "bg-black cursor-pointer": nextPage },
+              { "bg-slate-500": !nextPage },
+            ]}
+            disabled={!nextPage}
+          >
+            Next <Icon name="arrow-right" />
+          </Button>
+        </a>
       </div>
     </div>
   </div>
