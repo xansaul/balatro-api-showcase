@@ -1,5 +1,10 @@
 ---
-const { class: className = "" } = Astro.props;
+interface Props {
+  onClick?: () => void;
+  class: string;
+}
+
+const { class: className = "", onClick } = Astro.props;
 ---
 
 <button
@@ -7,6 +12,15 @@ const { class: className = "" } = Astro.props;
     "flex items-center justify-center cursor-pointer gap-2 px-4 py-2 rounded-lg text-white transition-colors",
     className,
   ]}
+  data-click={!!onClick}
 >
   <slot />
 </button>
+
+<script>
+  document.querySelectorAll('[data-click="true"]').forEach((button) => {
+    button.addEventListener('click', () => {
+      // Handle click event
+    });
+  });
+</script>
