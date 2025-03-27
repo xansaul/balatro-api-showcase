@@ -1,0 +1,25 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { Icon } from "astro-icon/components";
+import Image from "astro/components/Image.astro";
+---
+
+<MainLayout title="404 not found">
+  <div
+    class="min-h-screen min-w-screen flex flex-col justify-center items-center"
+  >
+    <Image src="/jimbo.png" alt="404 image" width={200} height={200} />
+    <div
+      class="w-48 h-20 mt-2 p-3 bg-white rounded-xl border-slate-200 border-4"
+    >
+      <span class="text-lg block">page not found</span>
+      <span class="text-lg">are you lost?</span>
+    </div>
+    <a
+      href="/"
+      class="text-white flex items-center gap-1 w-28 bg-black/60 rounded-xl p-2 mt-2"
+    >
+      <Icon name="arrow-left" />Go home
+    </a>
+  </div>
+</MainLayout>

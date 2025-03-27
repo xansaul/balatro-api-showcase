@@ -1,0 +1,10 @@
+---
+const { class: className } = Astro.props;
+---
+
+<div class:list={["text-white", className]}>
+  <div class="flex items-center justify-center gap-2">
+    <span>ℹ️</span>
+    <span>This is an unofficial API hosted on Railway's free plan. It may have rate limits and occasional downtime.</span>
+  </div>
+</div>

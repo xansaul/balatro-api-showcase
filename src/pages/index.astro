@@ -3,7 +3,7 @@ import Image from "astro/components/Image.astro";
 import balatroLogo from "../assets/logo-balatro.png";
 import MainLayout from "../layouts/MainLayout.astro";
 import { Icon } from "astro-icon/components";
-import { Button, TiltedCard } from "@/components";
+import { Button, TiltedCard, WarningInfo } from "@/components";
 import { getJokers, getTarot } from "@/core";
 
 const jokers = await getJokers(7,10)
@@ -13,65 +13,62 @@ const tarot = await getTarot(7,2)
 
 <MainLayout title="Balatro balatro tin ding tututututu">
   <div
-    class="md:flex md:p-0 px-2 text-white gap-4 pt-10 justify-center items-center"
+    class="md:flex md:p-0 px-2 text-white gap-4 pt-12 justify-center items-center"
   >
-    <div class="mt-5 flex gap-5">
+    <div class="2xl:mt-10 md:mt-4  flex gap-5">
       <Image src={balatroLogo} alt="Balatro" class="w-sm" />
       <span class="text-9xl place-self-end">API</span>
     </div>
   </div>
+  <WarningInfo/>
   <div
     class="w-11/12 md:w-8/12 m-auto flex flex-wrap gap-5 mt-4 justify-center"
   >
-    <script
-      type="text/javascript"
-      src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
-      data-name="bmc-button"
-      data-slug="xansaul"
-      data-color="#5F7FFF"
-      data-emoji="🍺"
-      data-font="Inter"
-      data-text="Buy me a beer"
-      data-outline-color="#000000"
-      data-font-color="#ffffff"
-      data-coffee-color="#FFDD00"></script>
 
-    <Button class="bg-gradient-to-r from-blue-900 to-red-900">
-      <a
-        href="https://balatro-api-production.up.railway.app/swagger/index.html"
-        target="_blank"
-        class="flex justify-center items-center gap-2"
-      >
+  
+    
+    <a href="http://www.buymeacoffee.com/xansaul" target="_blank">
+      <Button class="bg-cyan-600 cursor-pointer" >
+        <span class="text-2xl">
+          🍺 Buy me a beer
+        </span>
+      </Button>
+    </a>
+    
+
+    <a
+      href="https://balatro-api-production.up.railway.app/swagger/index.html"
+      target="_blank"
+    >
+      <Button class="cursor-pointer bg-gradient-to-r from-blue-900 to-red-900">
         <Icon name={"server"} size={25} />
         <span class="place-self-end text-2xl">API Docs</span>
-      </a>
-    </Button>
-
-    <Button class="bg-red-900">
-      <a
-        href="https://github.com/xansaul"
-        target="_blank"
-        class="flex justify-center items-center gap-2"
-      >
+      </Button>
+    </a>
+    
+    <a
+      href="https://github.com/xansaul"
+      target="_blank"
+    >
+    <Button class="cursor-pointer bg-red-900 flex justify-center items-center gap-2">
         <div class="flex justify-center items-center gap-2">
           <Icon name={"github"} size={25} />
           <span class="place-self-end text-2xl">Github</span>
         </div>
-      </a>
-    </Button>
+      </Button>
+    </a>
 
-    <Button class="bg-blue-900">
-      <a
-        href="https://xansaul.com"
-        target="_blank"
-        class="flex justify-center items-center gap-2"
-      >
-        <div class="flex justify-center items-center gap-2">
-          <Icon name={"web"} size={25} />
-          <span class="place-self-end text-2xl">My site</span>
-        </div>
-      </a>
-    </Button>
+    <a
+      href="https://xansaul.com"
+      target="_blank"
+    >
+      <Button class="cursor-pointer bg-blue-900 flex justify-center items-center gap-2">
+          <div class="flex justify-center items-center gap-2">
+            <Icon name={"web"} size={25} />
+            <span class="place-self-end text-2xl">My site</span>
+          </div>
+      </Button>
+    </a>
   </div>
   <div class="text-white md:w-10/12 2xl:w-8/12 w-11/12 m-auto">
     <div class="flex justify-end text-lg">

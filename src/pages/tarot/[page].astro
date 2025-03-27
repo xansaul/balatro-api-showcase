@@ -5,12 +5,11 @@ import NoAnimatedLayout from "@/layouts/NoAnimatedLayout.astro";
 import type { GetStaticPaths } from "astro";
 import { Icon } from "astro-icon/components";
 
-
 export const getStaticPaths = (async ({ paginate }) => {
   const data = await getTarot(22);
 
   const tarot = data.map((card) => ({
-    tarot_name: card.tarot_name ,
+    tarot_name: card.tarot_name,
     tarot_image: card.tarot_image,
   }));
 
@@ -31,9 +30,10 @@ const nextPage = currentPage < lastPage ? currentPage + 1 : null;
         <h1 class="text-7xl text-center">Jokers</h1>
         <a
           href="/"
-          class="text-white flex items-center gap-1 w-28 bg-black/60 rounded-3xl p-2 mb-1"
-          ><Icon name="arrow-left" />Go home</a
+          class="text-white flex items-center gap-1 w-28 bg-black/60 rounded-xl p-2 mb-2"
         >
+          <Icon name="arrow-left" />Go home
+        </a>
       </div>
 
       <div
@@ -92,6 +92,4 @@ const nextPage = currentPage < lastPage ? currentPage + 1 : null;
       </div>
     </div>
   </div>
-
-
 </NoAnimatedLayout>
